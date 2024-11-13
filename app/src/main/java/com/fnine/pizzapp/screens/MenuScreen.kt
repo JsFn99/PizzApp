@@ -17,10 +17,10 @@ import androidx.compose.ui.unit.dp
 import com.fnine.pizzapp.model.Pizza
 
 @Composable
-fun PizzaCard(pizza: Pizza, modifier: Modifier = Modifier) {
+fun PizzaCard(pizza: Pizza, modifier: Modifier = Modifier, onClick: () -> Unit) {
     Card(
         modifier = modifier,
-        onClick = { /*TODO*/ }
+        onClick = onClick
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Image(
@@ -49,10 +49,16 @@ fun PizzaCard(pizza: Pizza, modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun PizzaMenu(menu: List<Pizza>, modifier: Modifier = Modifier) {
+fun PizzaMenu(menu: List<Pizza>, onPizzaClick: (Pizza) -> Unit, modifier: Modifier = Modifier) {
     LazyColumn(modifier = modifier) {
         items(menu) { pizza ->
-            PizzaCard(pizza = pizza, modifier = Modifier.padding(bottom = 16.dp))
+            PizzaCard(
+                pizza = pizza,
+                onClick = { onPizzaClick(pizza) },
+                modifier = Modifier.padding(bottom = 16.dp)
+            )
         }
     }
 }
+
+

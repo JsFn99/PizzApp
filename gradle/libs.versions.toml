@@ -11,10 +11,12 @@ composeBom = "2024.04.01"
 generativeai = "0.9.0"
 navigationCompose = "2.8.3"
 kotlinxSerializationJson = "1.7.3"
+navigationComposeVersion = "2.4.0-alpha10"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-navigation-compose = { group ="androidx.navigation", name ="navigation-compose", version.ref ="navigationCompose" }
+androidx-navigation-compose-v240alpha10 = { module = "androidx.navigation:navigation-compose", version.ref = "navigationComposeVersion" }
 kotlinx-serialization-json = { module ="org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref ="kotlinxSerializationJson" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }

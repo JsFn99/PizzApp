@@ -21,25 +21,44 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.fnine.pizzapp.data.DataSource
 import com.fnine.pizzapp.ui.theme.PizzAppTheme
 import com.fnine.pizzapp.model.Pizza
+import com.fnine.pizzapp.screens.DetailPizza
+import com.fnine.pizzapp.screens.PizzaMenu
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
             PizzAppTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    /*PizzaCard(
-                        pizza = Pizza("Regina", "Tomato sauce, mozzarella, and pepperoni", R.drawable.pepperoni),
+                val navController = rememberNavController()
+                Scaffold { innerPadding ->
+                    NavHost(
+                        navController = navController,
+                        startDestination = "pizza_menu",
                         modifier = Modifier.padding(innerPadding)
-                    )*/
-                    PizzaMenu(
-                        DataSource().loadPizzas(),
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                    ) {
+                        composable("pizza_menu") {
+                            PizzaMenu(
+                                menu = DataSource().loadPizzas(),
+                                onPizzaClick = { pizza: Pizza ->
+                                    navController.navigate("pizza_details/${pizza.name}")
+                                },
+                                modifier = Modifier.padding(16.dp)
+                            )
+                        }
+                        composable("pizza_details/{name}") { backStackEntry ->
+                            val name = backStackEntry.arguments?.getString("name")
+                            val pizza = DataSource().loadPizzas().find { it.name == name }
+                            pizza?.let {
+                                DetailPizza(pizza = it)
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -54,11 +73,11 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
     )
 }
 
-@Composable
+/*@Composable
 fun PizzaCard(pizza: Pizza, modifier: Modifier = Modifier) {
     Card(
         modifier = modifier,
-        onClick = { /*TODO*/ }
+        onClick = { *//*TODO*//* }
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Image(
@@ -84,8 +103,9 @@ fun PizzaCard(pizza: Pizza, modifier: Modifier = Modifier) {
             )
         }
     }
-}
+}*/
 
+/*
 @Composable
 fun PizzaMenu(menu : List<Pizza>, modifier: Modifier = Modifier) {
     LazyColumn(modifier = modifier) {
@@ -96,12 +116,13 @@ fun PizzaMenu(menu : List<Pizza>, modifier: Modifier = Modifier) {
         }
     }
 }
+*/
 
 
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     PizzAppTheme {
-        Greeting("nta")
+        Greeting("you")
     }
 }
