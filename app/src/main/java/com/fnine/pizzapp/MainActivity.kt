@@ -70,10 +70,15 @@ fun PizzaCard(pizza: Pizza, modifier: Modifier = Modifier) {
             )
             Text(
                 text = pizza.name,
-                modifier = Modifier.padding(top = 8.dp)
+                modifier = Modifier.padding(top = 8.dp),
+                style = MaterialTheme.typography.headlineMedium
             )
             Text(
                 text = pizza.description,
+                modifier = Modifier.padding(top = 8.dp)
+            )
+            Text(
+                text = "\$ ${pizza.price}",
                 modifier = Modifier.padding(top = 8.dp),
                 style = MaterialTheme.typography.headlineMedium
             )

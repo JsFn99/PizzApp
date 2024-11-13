@@ -1,5 +1,4 @@
 package com.fnine.pizzapp.model
 
-class Pizza(val name: String, val description: String, val imageResourceId: Int) {
-
+class Pizza(val name: String, val description: String, val imageResourceId: Int, val price: Double) {
 }
