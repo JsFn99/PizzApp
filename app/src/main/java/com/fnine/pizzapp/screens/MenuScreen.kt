@@ -40,7 +40,7 @@ fun PizzaCard(pizza: Pizza, modifier: Modifier = Modifier, onClick: () -> Unit) 
                 modifier = Modifier.padding(top = 8.dp)
             )
             Text(
-                text = "\$ ${pizza.price}",
+                text = "${pizza.price} Dh",
                 modifier = Modifier.padding(top = 8.dp),
                 style = MaterialTheme.typography.headlineMedium
             )
